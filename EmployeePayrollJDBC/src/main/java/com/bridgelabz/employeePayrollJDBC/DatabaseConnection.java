@@ -9,20 +9,22 @@ import java.util.Enumeration;
  * @author - Shreyash Jadhav
  */
 public class DatabaseConnection {
+    static Connection connection;
     /**
      *  Method to make connection with payroll_service database
      */
-    public static void connectToDatabase() {
+    public static Connection connectToDatabase() {
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service";
         String username = "root";
         String password = "Shreyash@1234";
         try {
             System.out.println("\n Connecting to database : " + jdbcURL);
-            Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+            connection = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println(" Connection is Successful : " + connection);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return connection;
     }
     /**
      *  Method to get list of drivers installed for JDBC connections
