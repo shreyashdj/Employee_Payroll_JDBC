@@ -10,7 +10,8 @@ public class Main {
         DatabaseConnection.connectToDatabase();
         DatabaseConnection.driversList();
         try {
-            EmployeePayrollService.readEmployeePayrollData(DatabaseConnection.connection);
+            EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+            employeePayrollService.readEmployeePayrollData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

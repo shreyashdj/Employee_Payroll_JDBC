@@ -1,6 +1,5 @@
 package com.bridgelabz.employeePayrollJDBC;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +11,8 @@ public class EmployeePayrollService {
     /**
      *  Method to get all employee payroll data
      */
-    public static void readEmployeePayrollData(Connection connection) throws SQLException {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from employee_payroll");
+    public void readEmployeePayrollData() throws SQLException {
+            PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement("select * from employee_payroll");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 System.out.println("\n *********************************");

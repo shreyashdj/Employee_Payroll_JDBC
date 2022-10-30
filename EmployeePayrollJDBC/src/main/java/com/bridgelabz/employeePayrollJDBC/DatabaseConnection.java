@@ -11,9 +11,9 @@ import java.util.Enumeration;
 public class DatabaseConnection {
     static Connection connection;
     /**
-     *  Method to make connection with payroll_service database
+     * Method to make connection with payroll_service database
      */
-    public static Connection connectToDatabase() {
+    public static void connectToDatabase() {
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service";
         String username = "root";
         String password = "Shreyash@1234";
@@ -24,7 +24,6 @@ public class DatabaseConnection {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return connection;
     }
     /**
      *  Method to get list of drivers installed for JDBC connections
