@@ -15,6 +15,14 @@ public class EmployeePayrollService {
      *  Method to get all employee payroll data
      */
     public int readEmployeePayrollData() throws SQLException {
+        /*
+         *  created employeePayrollDataList (ArrayList)
+         *  query to get all data employee_payroll table
+         *  created preparedStatement by passing query
+         *  created resultSet which store data after executeQuery
+         *  using while loop iterate resultSet to get data and add it to employeePayrollDataList
+         *  printing employeePayrollDataList and return size of employeePayrollDataList
+         */
         List<EmployeePayrollData> employeePayrollDataList = new ArrayList<>();
         String query = "select * from employee_payroll";
         PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(query);
@@ -31,7 +39,17 @@ public class EmployeePayrollService {
         employeePayrollDataList.forEach(System.out::println);
         return employeePayrollDataList.size();
     }
+    /**
+     *  Method to read any Column Data By EmployeeName
+     */
     public String readAnyColumnDataByEmployeeName(String empName, String columnName) throws SQLException {
+        /*
+         *  passing parameters (String empName, String columnName)
+         *  query to get data of any column by employee name
+         *  created preparedStatement by passing query
+         *  created resultSet which store data after executeQuery
+         *  if resultSet contains any data, store it in result and return result
+         */
         String query = "select " + columnName + " from employee_payroll where EmployeeName = ?";
         PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(query);
         preparedStatement.setString(1, empName);
@@ -43,13 +61,18 @@ public class EmployeePayrollService {
         return result;
     }
     /**
-     *  Method to update base salary of employee
+     *  Method to update base salary of employee by name
      */
-    public void updateBaseSalary(String name, double salary) throws SQLException {
+    public void updateBaseSalary(String empName, double salary) throws SQLException {
+        /*
+         *  passing parameters (String empName, double salary)
+         *  query to update basePay of employee by its name
+         *  created preparedStatement by passing query and calling executeUpdate method
+         */
         String query = "update employee_payroll set BasicPay = ? where EmployeeName = ?";
         PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(query);
         preparedStatement.setDouble(1, salary);
-        preparedStatement.setString(2, name);
+        preparedStatement.setString(2, empName);
         preparedStatement.executeUpdate();
     }
 }
